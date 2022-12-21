@@ -8,9 +8,9 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from './entities/user.entity';
+import { User } from '../entities/user.entity';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -20,22 +20,23 @@ export class UserController {
   }
 
   @Post('create')
-  create(@Body() user: User) {
+  async create(@Body() user: User): Promise<any> {
     return this.userService.create(user);
   }
 
   @Get(':user_id')
-  findOne(@Param('user_id') user_id: number) {
+  findOne(@Param('user_id') user_id: number): Promise<any> {
     return this.userService.findOne(+user_id);
   }
 
-  @Patch('update')
-  update(@Body() user: User) {
+  @Patch(':id/update')
+  async update(@Param('id') user_id, @Body() user: User): Promise<any> {
+    user.user_id = user_id;
     return this.userService.update(user);
   }
 
-  @Delete(':user_id')
-  remove(@Param('user_id') id: number) {
+  @Delete(':user_id/delete')
+  async delete(@Param('user_id') id: number): Promise<any> {
     return this.userService.delete(+id);
   }
 }
