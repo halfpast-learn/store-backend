@@ -9,6 +9,10 @@ import { ItemsModule } from './items/items.module';
 import { Item } from './items/entities/item.entity';
 import { OrderModule } from './order/order.module';
 import { Order } from './order/entities/order.entity';
+import { TagModule } from './tags/tags.module';
+import { RoleModule } from './roles/roles.module';
+import { Role } from './roles/entities/role.entity';
+import { Tag } from './tags/entities/tag.entity';
 
 @Module({
   imports: [
@@ -18,9 +22,9 @@ import { Order } from './order/entities/order.entity';
       username: 'root',
       password: '12345',
       schema: 'public',
-      entities: [User, Item, Order],
+      entities: [User, Item, Order, Tag, Role],
       synchronize: false,
-    }), UserModule, ItemsModule, OrderModule
+    }), UserModule, ItemsModule, OrderModule, TagModule, RoleModule
   ],
   controllers: [AppController],
   providers: [AppService],
