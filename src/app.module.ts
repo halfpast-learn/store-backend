@@ -6,6 +6,9 @@ import { AppService } from './app.service';
 import { User } from './users/entities/user.entity';
 import { UserModule } from './users/user.module';
 import { ItemsModule } from './items/items.module';
+import { Item } from './items/entities/item.entity';
+import { OrderModule } from './order/order.module';
+import { Order } from './order/entities/order.entity';
 
 @Module({
   imports: [
@@ -15,9 +18,9 @@ import { ItemsModule } from './items/items.module';
       username: 'root',
       password: '12345',
       schema: 'public',
-      entities: [User],
+      entities: [User, Item, Order],
       synchronize: false,
-    }), UserModule, ItemsModule
+    }), UserModule, ItemsModule, OrderModule
   ],
   controllers: [AppController],
   providers: [AppService],
