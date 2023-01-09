@@ -28,6 +28,10 @@ export class TagsService {
     });
   }
 
+  async findByRole(role: string): Promise<Tag[]> {
+    return await this.tagRepository.createQueryBuilder("tag").where("tag.name= :name", {name:"hand tool"}).getMany();
+  }
+
   async update(tag_id: number, tag: Tag): Promise<UpdateResult> {
     return await this.tagRepository.update(tag_id, tag);
   }
