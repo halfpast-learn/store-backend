@@ -9,7 +9,8 @@ export class Role {
 
     @Column({nullable: true})
     name: string;
-    @ManyToMany(()=>Tag)
-    @JoinTable({name:"role_tag"})
-    tag_id: number;
+
+    @ManyToMany(role => Tag)
+    @JoinTable({name:"role_tag", joinColumn:{name:"role_role_id"}, inverseJoinColumn:{name:"tag_tag_id"}})
+    tags: number[];
 }

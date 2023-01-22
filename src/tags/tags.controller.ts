@@ -16,22 +16,17 @@ export class TagController {
     return this.tagService.findAll();
   }
 
-  @Get('/id/:id')
+  @Get(':id')
   findOne(@Param('id') id: string) {
     return this.tagService.findOne(+id);
   }
 
-  @Get('/role/:role')
-  findByRole(@Param('role') role: string) {
-    return this.tagService.findByRole(role);
-  }
-
-  @Patch('/id/:id')
+  @Patch(':id')
   update(@Param('id') id: string, @Body() tag: Tag) {
     return this.tagService.update(+id, tag);
   }
 
-  @Delete('/id/:id')
+  @Delete(':id')
   delete(@Param('id') id: string) {
     return this.tagService.delete(+id);
   }

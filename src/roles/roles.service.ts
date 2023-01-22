@@ -28,6 +28,15 @@ export class RolesService {
     });
   }
 
+  async findTags(role_id: number) {
+    let r: Role = await this.roleRepository
+      .createQueryBuilder('role')
+      .where('role_id = :id', { id: role_id })
+      .innerJoinAndSelect('role.tags', 'tag')
+      .getOne();
+    return r.tags;
+  }
+
   async update(role_id: number, role: Role): Promise<UpdateResult> {
     return await this.roleRepository.update(role_id, role);
   }

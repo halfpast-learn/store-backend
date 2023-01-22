@@ -9,7 +9,7 @@ import { Tag } from './entities/tag.entity';
 export class TagsService {
   constructor(
     @InjectRepository(Tag)
-    private tagRepository: Repository<Tag>,
+    private tagRepository: Repository<Tag>
   ) {}
 
   async create(tag: Tag): Promise<Tag> {
@@ -26,11 +26,7 @@ export class TagsService {
         tag_id: tag_id,
       },
     });
-  }
-
-  async findByRole(role: string): Promise<Tag[]> {
-    return await this.tagRepository.createQueryBuilder("tag").where("tag.name= :name", {name:"hand tool"}).getMany();
-  }
+  } 
 
   async update(tag_id: number, tag: Tag): Promise<UpdateResult> {
     return await this.tagRepository.update(tag_id, tag);
