@@ -21,6 +21,11 @@ export class RoleController {
     return this.roleService.findOne(+id);
   }
 
+  @Get('/name/:name')
+  findByName(@Param('name') name: string) {
+    return this.roleService.findByName(name);
+  }
+
   @Get('role/:id')
   findByRole(@Param('id') id: number) {
     return this.roleService.findTags(id);

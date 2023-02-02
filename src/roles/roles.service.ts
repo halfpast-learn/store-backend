@@ -28,6 +28,14 @@ export class RolesService {
     });
   }
 
+  async findByName(role_name: string): Promise<Role> {
+    return await this.roleRepository.findOne({
+      where: {
+        name: role_name,
+      },
+    });
+  }
+
   async findTags(role_id: number) {
     let r: Role = await this.roleRepository
       .createQueryBuilder('role')
