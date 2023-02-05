@@ -29,6 +29,11 @@ export class UserController {
     return this.userService.findOne(+user_id);
   }
 
+  @Get("/name/:username")
+  findByLogin(@Param('username') username: string): Promise<any> {
+    return this.userService.findByLogin(username);
+  }
+
   @Patch(':id/update')
   async update(@Param('id') user_id, @Body() user: User): Promise<any> {
     user.user_id = user_id;
