@@ -21,6 +21,16 @@ export class TagController {
     return this.tagService.findOne(+id);
   }
 
+  @Get(':id/items')
+  findItems(@Param('id') id: number) {
+    return this.tagService.findItems(id);
+  }
+
+  @Get(':ids/allItems')
+  findItemsByTags(@Param('ids') ids: string) {
+    return this.tagService.findItemsByTags(ids.split(',').map(Number));
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() tag: Tag) {
     return this.tagService.update(+id, tag);
