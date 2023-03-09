@@ -11,8 +11,9 @@ export class OrderService {
     private orderRepository: Repository<Order>,
   ) {}
 
-  async create(item: Order): Promise<Order> {
-    return await this.orderRepository.save(item);
+  async create(order: Order): Promise<Order> {
+    console.log(`saving order ${JSON.stringify(order)}`);
+    return await this.orderRepository.save(order);
   }
 
   async findAll(): Promise<Order[]> {

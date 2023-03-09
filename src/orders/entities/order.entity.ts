@@ -23,6 +23,6 @@ export class Order {
   user_owner: number;
 
   @ManyToMany(() => Item)
-  @JoinTable({ name: 'order_item' })
+  @JoinTable({ name: 'order_item', joinColumn: {name: 'order_order_id'}, inverseJoinColumn: {name: 'item_item_id'}})
   items: Item[];
 }
