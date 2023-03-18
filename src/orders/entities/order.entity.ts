@@ -18,7 +18,7 @@ export class Order {
   @Column({ nullable: true })
   status: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.orders)
   @JoinColumn({ name: 'user_owner' })
   user_owner: number;
 

@@ -1,5 +1,6 @@
+import { Order } from 'src/orders/entities/order.entity';
 import { Role } from 'src/roles/entities/role.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -25,4 +26,7 @@ export class User {
     @ManyToOne(()=> Role, role => role.role_id)
     @JoinColumn({name: "role"})
     roleData: Role;
+
+    @OneToMany(()=>Order, (order)=>order.user_owner)
+    orders: Order[];
 }

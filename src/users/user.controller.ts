@@ -34,6 +34,11 @@ export class UserController {
     return this.userService.findByLogin(username);
   }
 
+  @Get(":id/orders")
+  findOrders(@Param(':id') user_id: number): Promise<User> {
+    return this.userService.findOrders(user_id);
+  }
+
   @Patch(':id/update')
   async update(@Param('id') user_id, @Body() user: User): Promise<any> {
     user.user_id = user_id;

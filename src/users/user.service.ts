@@ -35,6 +35,17 @@ export class UserService {
     });
   }
 
+  async findOrders(user_id: number): Promise<User> {
+    return await this.userRepository.findOne({
+      relations: {
+        orders: true,
+      },
+      where: {
+        user_id: user_id,
+      },
+    });
+  }
+
   async update(user: User): Promise<UpdateResult> {
     return await this.userRepository.update(user.user_id, user);
   }

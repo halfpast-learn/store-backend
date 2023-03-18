@@ -27,7 +27,7 @@ export class OrderService {
       },
     });
   }
-
+  
   async update(order_id: number, item: Order): Promise<UpdateResult> {
     return await this.orderRepository.update(order_id, item);
   }
