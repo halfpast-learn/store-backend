@@ -37,12 +37,16 @@ export class UserService {
 
   async findOrders(user_id: number): Promise<User> {
     return await this.userRepository.findOne({
-      relations: {
-        orders: true,
-      },
       where: {
         user_id: user_id,
       },
+      join: {
+        alias: "user",
+        leftJoinAndSelect: {
+          "orders": "user.orders",
+          "items": "orders.items"
+        }
+      }
     });
   }
 
