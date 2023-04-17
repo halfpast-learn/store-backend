@@ -18,6 +18,12 @@ export class Order {
   @Column({ nullable: true })
   status: string;
 
+  @Column({nullable: true})
+  address: string;
+
+  @Column({ nullable: true})
+  contact_information: string;
+
   @ManyToOne(() => User, (user) => user.orders)
   @JoinColumn({ name: 'user_owner' })
   user_owner: number;
