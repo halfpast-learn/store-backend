@@ -29,9 +29,9 @@ export class UserController {
     return this.userService.findOne(+user_id);
   }
 
-  @Get("/name/:username")
-  findByLogin(@Param('username') username: string): Promise<any> {
-    return this.userService.findByLogin(username);
+  @Post("/name/login")
+  findByLogin(@Body() info: string[]): Promise<any> {
+    return this.userService.findByLogin(info[0],info[1]);
   }
 
   @Get(":id/orders")
@@ -44,6 +44,13 @@ export class UserController {
     user.user_id = user_id;
     return this.userService.update(user);
   }
+
+  @Patch(':id/updatepw')
+  async updatepw(@Param('id') user_id, @Body() user: User): Promise<any> {
+    user.user_id = user_id;
+    return this.userService.updatepw(user);
+  }
+  
 
   @Delete(':user_id/delete')
   async delete(@Param('user_id') id: number): Promise<any> {
