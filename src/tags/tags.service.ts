@@ -54,7 +54,6 @@ export class TagsService {
     for (let tag of tags) {
       items = items.concat(tag.items);
     }
-    items = [...new Set(items)];
     return items;
   }
 
