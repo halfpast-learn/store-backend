@@ -13,6 +13,7 @@ import { TagModule } from './tags/tags.module';
 import { RoleModule } from './roles/roles.module';
 import { Role } from './roles/entities/role.entity';
 import { Tag } from './tags/entities/tag.entity';
+import { ImagesModule } from './images/images.module';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { Tag } from './tags/entities/tag.entity';
       schema: 'public',
       entities: [User, Item, Order, Tag, Role],
       synchronize: false,
-    }), UserModule, ItemsModule, OrderModule, TagModule, RoleModule
+    }), UserModule, ItemsModule, OrderModule, TagModule, RoleModule, ImagesModule
   ],
   controllers: [AppController],
   providers: [AppService],
