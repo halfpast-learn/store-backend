@@ -17,7 +17,11 @@ export class ItemsService {
   }
 
   async findAll(): Promise<Item[]> {
-    return await this.itemRepository.find();
+    return await this.itemRepository.find({
+      relations: {
+        tags: true,
+      }
+    });
   }
 
   async findOne(item_id: number): Promise<Item> {
@@ -25,6 +29,9 @@ export class ItemsService {
       where: {
         item_id: item_id,
       },
+      relations: {
+        tags: true,
+      }
     });
   }
 
