@@ -8,7 +8,6 @@ export class OrderController {
 
   @Post()
   create(@Body() order: Order) {
-    console.log(JSON.stringify(order));
     return this.orderService.create(order);
   }
 

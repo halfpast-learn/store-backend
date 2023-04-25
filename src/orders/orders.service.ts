@@ -12,7 +12,6 @@ export class OrderService {
   ) {}
 
   async create(order: Order): Promise<Order> {
-    console.log(`saving order ${JSON.stringify(order)}`);
     return await this.orderRepository.save(order);
   }
 
