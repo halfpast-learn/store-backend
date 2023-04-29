@@ -19,10 +19,6 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async findAll(): Promise<User[]> {
-    return await this.userRepository.find();
-  }
-
   async findOne(user_id: number): Promise<User> {
     return await this.userRepository.findOne({
       where: {
@@ -66,10 +62,6 @@ export class UserService {
   async updatepw(user: User): Promise<UpdateResult> {
     user.password = this.encryptPassword(user.password);
     return await this.userRepository.update(user.user_id, user);
-  }
-
-  async delete(user_id: number): Promise<DeleteResult> {
-    return await this.userRepository.delete(user_id);
   }
 
   encryptPassword(password: string): string {

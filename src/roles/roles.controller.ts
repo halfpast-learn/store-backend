@@ -6,11 +6,6 @@ import { Role } from './entities/role.entity';
 export class RoleController {
   constructor(private readonly roleService: RolesService) {}
 
-  @Post()
-  create(@Body() role: Role) {
-    return this.roleService.create(role);
-  }
-
   @Get()
   findAll() {
     return this.roleService.findAll();
@@ -27,17 +22,8 @@ export class RoleController {
   }
 
   @Get('role/:id')
-  findByRole(@Param('id') id: number) {
+  findTags(@Param('id') id: number) {
     return this.roleService.findTags(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() role: Role) {
-    return this.roleService.update(+id, role);
-  }
-
-  @Delete(':id')
-  delete(@Param('id') id: string) {
-    return this.roleService.delete(+id);
-  }
 }

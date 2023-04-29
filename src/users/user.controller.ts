@@ -14,11 +14,6 @@ import { User } from './entities/user.entity';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()
-  readAll(): Promise<User[]> {
-    return this.userService.findAll();
-  }
-
   @Post('create')
   async create(@Body() user: User): Promise<any> {
     return this.userService.create(user);
@@ -49,11 +44,5 @@ export class UserController {
   async updatepw(@Param('id') user_id, @Body() user: User): Promise<any> {
     user.user_id = user_id;
     return this.userService.updatepw(user);
-  }
-  
-
-  @Delete(':user_id/delete')
-  async delete(@Param('user_id') id: number): Promise<any> {
-    return this.userService.delete(+id);
   }
 }

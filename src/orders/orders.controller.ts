@@ -21,13 +21,4 @@ export class OrderController {
     return this.orderService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() order: Order) {
-    return this.orderService.update(+id, order);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.orderService.delete(+id);
-  }
 }
