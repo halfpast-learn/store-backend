@@ -20,7 +20,7 @@ import { ImagesModule } from './images/images.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       database: 'store',
-      username: 'root',
+      username: 'postgres',
       password: '12345',
       schema: 'public',
       entities: [User, Item, Order, Tag, Role],
