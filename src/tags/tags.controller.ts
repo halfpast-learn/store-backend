@@ -20,6 +20,11 @@ export class TagController {
     return this.tagService.findItemsByTags(ids.split(',').map(Number));
   }
 
+  @Get('opinions/:user_id')
+  findTagsByOpinions(@Param('user_id') user_id: number) {
+    return this.tagService.findByOpinions(user_id);
+  }
+
   @Post('/opinion')
   changeOpinions(@Body() data) {
     console.log(data);

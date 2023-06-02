@@ -21,6 +21,12 @@ export class TagsService {
     return await this.tagRepository.find();
   }
 
+  async findByOpinions(user_id: number): Promise<any> {
+    return await this.tagRepository.query(`select tag_id from opinion where user_id=${user_id} order by opinion desc`).then(result => {
+      return result.map(x=>x.tag_id);
+    });
+  }
+
   async findOne(tag_id: number): Promise<Tag> {
     return await this.tagRepository.findOne({
       where: {
