@@ -1,5 +1,4 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { Tag } from './entities/tag.entity';
 import { TagsService } from './tags.service'; 
 
 @Controller('tags')
@@ -21,4 +20,9 @@ export class TagController {
     return this.tagService.findItemsByTags(ids.split(',').map(Number));
   }
 
+  @Post('/opinion')
+  changeOpinions(@Body() data) {
+    console.log(data);
+      return this.tagService.changeTagOpinions(data);
+  }
 }

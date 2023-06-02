@@ -10,7 +10,7 @@ import { Tag } from './entities/tag.entity';
 export class TagsService {
   constructor(
     @InjectRepository(Tag)
-    private tagRepository: Repository<Tag>,
+    private tagRepository: Repository<Tag>
   ) {}
 
   async create(tag: Tag): Promise<Tag> {
@@ -55,6 +55,12 @@ export class TagsService {
       items = items.concat(tag.items);
     }
     return items;
+  }
+
+  async changeTagOpinions(data)
+  {
+    return this.tagRepository
+      .query(`update opinion set opinion=opinion+2*${data.liked?1:0}-1 where tag_id in (${data.tagIds.join(',')}) and user_id = ${data.userId}`);
   }
 
   async update(tag_id: number, tag: Tag): Promise<UpdateResult> {
