@@ -1,6 +1,6 @@
 import { Order } from 'src/orders/entities/order.entity';
-import { Role } from 'src/roles/entities/role.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Preference } from 'src/preferences/entities/preference.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 
 @Entity()
 export class User {
@@ -12,12 +12,9 @@ export class User {
     @Column({nullable: true})
     password: string;
 
-    @Column({ nullable: true })
-    role: number;
-
-    @ManyToOne(()=> Role, role => role.role_id)
-    @JoinColumn({name: "role"})
-    roleData: Role;
+    @ManyToMany(()=> Preference, role => role.preference_id)
+    @JoinTable({name: "preference_user", joinColumn: {name: "preference_id"}, inverseJoinColumn: {name: "user_id"}})
+    preferences: Preference[];
 
     @OneToMany(()=>Order, (order)=>order.user_owner)
     orders: Order[];

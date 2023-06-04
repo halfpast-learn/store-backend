@@ -10,8 +10,8 @@ import { Item } from './items/entities/item.entity';
 import { OrderModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';
 import { TagModule } from './tags/tags.module';
-import { RoleModule } from './roles/roles.module';
-import { Role } from './roles/entities/role.entity';
+import { PreferenceModule } from './preferences/preferences.module';
+import { Preference } from './preferences/entities/preference.entity';
 import { Tag } from './tags/entities/tag.entity';
 import { ImagesModule } from './images/images.module';
 
@@ -23,9 +23,9 @@ import { ImagesModule } from './images/images.module';
       username: 'postgres',
       password: '12345',
       schema: 'public',
-      entities: [User, Item, Order, Tag, Role],
+      entities: [User, Item, Order, Tag, Preference],
       synchronize: false,
-    }), UserModule, ItemsModule, OrderModule, TagModule, RoleModule, ImagesModule
+    }), UserModule, ItemsModule, OrderModule, TagModule, PreferenceModule, ImagesModule
   ],
   controllers: [AppController],
   providers: [AppService],

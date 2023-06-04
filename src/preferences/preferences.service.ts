@@ -3,32 +3,32 @@ import { InjectRepository } from '@nestjs/typeorm/dist';
 
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 
-import { Role } from './entities/role.entity';
+import { Preference } from './entities/preference.entity';
 
 @Injectable()
-export class RolesService {
+export class PreferenceService {
   constructor(
-    @InjectRepository(Role)
-    private roleRepository: Repository<Role>,
+    @InjectRepository(Preference)
+    private roleRepository: Repository<Preference>,
   ) {}
 
-  async create(role: Role): Promise<Role> {
+  async create(role: Preference): Promise<Preference> {
     return await this.roleRepository.save(role);
   }
 
-  async findAll(): Promise<Role[]> {
+  async findAll(): Promise<Preference[]> {
     return await this.roleRepository.find();
   }
 
-  async findOne(role_id: number): Promise<Role> {
+  async findOne(role_id: number): Promise<Preference> {
     return await this.roleRepository.findOne({
       where: {
-        role_id: role_id,
+        preference_id: role_id,
       },
     });
   }
 
-  async findByName(role_name: string): Promise<Role> {
+  async findByName(role_name: string): Promise<Preference> {
     return await this.roleRepository.findOne({
       where: {
         name: role_name,
@@ -37,7 +37,7 @@ export class RolesService {
   }
 
   async findTags(role_id: number) {
-    let r: Role = await this.roleRepository
+    let r: Preference = await this.roleRepository
       .createQueryBuilder('role')
       .where('role_id = :id', { id: role_id })
       .innerJoinAndSelect('role.tags', 'tag')
@@ -45,7 +45,7 @@ export class RolesService {
     return r.tags;
   }
 
-  async update(role_id: number, role: Role): Promise<UpdateResult> {
+  async update(role_id: number, role: Preference): Promise<UpdateResult> {
     return await this.roleRepository.update(role_id, role);
   }
 
